@@ -11,24 +11,23 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 internal class SearchPresenter (
+    private val repository: GitHubRepository
 ) : PresenterSearchContract, GitHubRepositoryCallback {
 
     private var viewContract: ViewSearchContract? = null
-    private var repository: GitHubRepository? = null
+
 
     override fun searchGitHub(searchQuery: String) {
         viewContract?.displayLoading(true)
-        repository?.searchGithub(searchQuery, this)
+        repository.searchGithub(searchQuery, this)
     }
 
     override fun onAttach(viewContract: ViewContract) {
         this.viewContract = viewContract as ViewSearchContract
-        this.repository = createRepository()
     }
 
     override fun onDetach() {
         this.viewContract = null
-        this.repository = null
     }
 
     override fun handleGitHubResponse(response: Response<SearchResponse?>?) {
@@ -53,20 +52,5 @@ internal class SearchPresenter (
     override fun handleGitHubError() {
         viewContract?.displayLoading(false)
         viewContract?.displayError()
-    }
-
-    private fun createRepository(): GitHubRepository {
-        return GitHubRepository(createRetrofit().create(GitHubApi::class.java))
-    }
-
-    private fun createRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    companion object {
-        const val BASE_URL = "https://api.github.com"
     }
 }
