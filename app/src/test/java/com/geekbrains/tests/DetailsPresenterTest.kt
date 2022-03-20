@@ -29,7 +29,7 @@ class DetailsPresenterTest {
     }
 
     @Test
-    fun onDecrement() {
+    fun onDecrement_Test() {
         val count = -1
         presenter.onDecrement()
         verify(viewContract).setCount(count)
