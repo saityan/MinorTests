@@ -7,10 +7,6 @@ internal class DetailsPresenter: PresenterDetailsContract {
     private var viewContract: ViewDetailsContract? = null
     private var count: Int = 0
 
-    override fun setCounter(count: Int) {
-        this.count = count
-    }
-
     override fun onIncrement() {
         count++
         viewContract?.setCount(count)
