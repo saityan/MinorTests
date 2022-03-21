@@ -16,7 +16,6 @@ internal class SearchPresenter (
 
     private var viewContract: ViewSearchContract? = null
 
-
     override fun searchGitHub(searchQuery: String) {
         viewContract?.displayLoading(true)
         repository.searchGithub(searchQuery, this)
