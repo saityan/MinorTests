@@ -12,20 +12,25 @@ import java.util.*
 
 class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
 
-    private val presenter: PresenterDetailsContract = DetailsPresenter(this)
+    private var detailsPresenter: PresenterDetailsContract = DetailsPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        detailsPresenter.onAttach(this)
         setContentView(R.layout.activity_details)
         setUI()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        detailsPresenter.onDetach()
+    }
+
     private fun setUI() {
         val count = intent.getIntExtra(TOTAL_COUNT_EXTRA, 0)
-        presenter.setCounter(count)
         setCountText(count)
-        decrementButton.setOnClickListener { presenter.onDecrement() }
-        incrementButton.setOnClickListener { presenter.onIncrement() }
+        decrementButton.setOnClickListener { detailsPresenter.onDecrement() }
+        incrementButton.setOnClickListener { detailsPresenter.onIncrement() }
     }
 
     override fun setCount(count: Int) {

@@ -20,18 +20,26 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity(), ViewSearchContract {
 
     private val adapter = SearchResultAdapter()
-    private val presenter: PresenterSearchContract = SearchPresenter(this, createRepository())
-    private var totalCount: Int = 0
+    private val presenter: PresenterSearchContract = SearchPresenter(createRepository())
+    private var totalCount: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        presenter.onAttach(this)
         setContentView(R.layout.activity_main)
         setUI()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onDetach()
+    }
+
     private fun setUI() {
         toDetailsActivityButton.setOnClickListener {
-            startActivity(DetailsActivity.getIntent(this, totalCount))
+            startActivity(totalCount?.let { totalCount ->
+                DetailsActivity.getIntent(this, totalCount)
+            })
         }
         setQueryListener()
         setRecyclerView()
@@ -62,22 +70,11 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         })
     }
 
-    private fun createRepository(): GitHubRepository {
-        return GitHubRepository(createRetrofit().create(GitHubApi::class.java))
-    }
-
-    private fun createRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
     override fun displaySearchResults(
         searchResults: List<SearchResult>,
         totalCount: Int
     ) {
-        this.totalCount = totalCount
+        this.setCount(totalCount)
         adapter.updateResults(searchResults)
     }
 
@@ -95,6 +92,25 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         } else {
             progressBar.visibility = View.GONE
         }
+    }
+
+    override fun setCount(count: Int) {
+        this.totalCount = count
+    }
+
+    override fun nullCount() {
+        this.totalCount = null
+    }
+
+    private fun createRepository(): GitHubRepository {
+        return GitHubRepository(createRetrofit().create(GitHubApi::class.java))
+    }
+
+    private fun createRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
     companion object {
