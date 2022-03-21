@@ -12,4 +12,5 @@ internal interface ViewSearchContract : ViewContract {
     fun displayError()
     fun displayError(error: String)
     fun displayLoading(show: Boolean)
+    fun nullCount()
 }

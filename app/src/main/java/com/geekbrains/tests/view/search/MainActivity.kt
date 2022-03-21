@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
 
     private val adapter = SearchResultAdapter()
     private val presenter: PresenterSearchContract = SearchPresenter(createRepository())
-    private var totalCount: Int = 0
+    private var totalCount: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,9 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
 
     private fun setUI() {
         toDetailsActivityButton.setOnClickListener {
-            startActivity(DetailsActivity.getIntent(this, totalCount))
+            startActivity(totalCount?.let { totalCount ->
+                DetailsActivity.getIntent(this, totalCount)
+            })
         }
         setQueryListener()
         setRecyclerView()
@@ -72,7 +74,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         searchResults: List<SearchResult>,
         totalCount: Int
     ) {
-        this.totalCount = totalCount
+        this.setCount(totalCount)
         adapter.updateResults(searchResults)
     }
 
@@ -90,6 +92,14 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         } else {
             progressBar.visibility = View.GONE
         }
+    }
+
+    override fun setCount(count: Int) {
+        this.totalCount = count
+    }
+
+    override fun nullCount() {
+        this.totalCount = null
     }
 
     private fun createRepository(): GitHubRepository {
