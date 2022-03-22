@@ -17,6 +17,10 @@ internal class DetailsPresenter: PresenterDetailsContract {
         viewContract?.setCount(count)
     }
 
+    override fun setCount(count: Int) {
+        this.count = count
+    }
+
     override fun onAttach(viewContract: ViewContract) {
         this.viewContract = viewContract as ViewDetailsContract
     }

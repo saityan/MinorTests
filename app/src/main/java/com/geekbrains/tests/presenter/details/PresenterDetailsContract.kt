@@ -5,4 +5,5 @@ import com.geekbrains.tests.presenter.PresenterContract
 internal interface PresenterDetailsContract : PresenterContract {
     fun onIncrement()
     fun onDecrement()
+    fun setCount(count: Int)
 }

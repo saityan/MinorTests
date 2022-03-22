@@ -117,6 +117,6 @@ class SearchPresenterTest {
     @Test
     fun onDetach_Success() {
         presenter.onDetach()
-        verify(viewContract, times(1)).nullCount()
+        verify(viewContract, times(1)).setCountToNull()
     }
 }

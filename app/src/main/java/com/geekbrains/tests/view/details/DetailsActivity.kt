@@ -28,6 +28,7 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
 
     private fun setUI() {
         val count = intent.getIntExtra(TOTAL_COUNT_EXTRA, 0)
+        detailsPresenter.setCount(count)
         setCountText(count)
         decrementButton.setOnClickListener { detailsPresenter.onDecrement() }
         incrementButton.setOnClickListener { detailsPresenter.onIncrement() }

@@ -1,15 +1,15 @@
 package com.geekbrains.tests.presenter.search
 
 import com.geekbrains.tests.model.SearchResponse
-import com.geekbrains.tests.repository.GitHubRepository
-import com.geekbrains.tests.repository.GitHubRepository.GitHubRepositoryCallback
+import com.geekbrains.tests.repository.RepositoryCallback
+import com.geekbrains.tests.repository.RepositoryContract
 import com.geekbrains.tests.view.ViewContract
 import com.geekbrains.tests.view.search.ViewSearchContract
 import retrofit2.Response
 
 internal class SearchPresenter (
-    private val repository: GitHubRepository
-) : PresenterSearchContract, GitHubRepositoryCallback {
+    private val repository: RepositoryContract
+) : PresenterSearchContract, RepositoryCallback {
 
     private var viewContract: ViewSearchContract? = null
 
@@ -24,7 +24,7 @@ internal class SearchPresenter (
     }
 
     override fun onDetach() {
-        viewContract?.nullCount()
+        viewContract?.setCountToNull()
         this.viewContract = null
     }
 
