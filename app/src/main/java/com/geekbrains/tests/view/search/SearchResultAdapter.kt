@@ -3,11 +3,11 @@ package com.geekbrains.tests.view.search
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.tests.R
 import com.geekbrains.tests.model.SearchResult
 import com.geekbrains.tests.view.search.SearchResultAdapter.SearchResultViewHolder
-import kotlinx.android.synthetic.main.list_item.view.*
 
 internal class SearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder>() {
 
@@ -18,7 +18,7 @@ internal class SearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder
         viewType: Int
     ): SearchResultViewHolder {
         return SearchResultViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item, null)
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         )
     }
 
@@ -26,7 +26,7 @@ internal class SearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder
         holder: SearchResultViewHolder,
         position: Int
     ) {
-        holder.bind(results[position])
+        holder.text.text = results[position].name
     }
 
     override fun getItemCount(): Int {
@@ -39,9 +39,6 @@ internal class SearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder
     }
 
     internal class SearchResultViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        fun bind(searchResult: SearchResult) {
-            itemView.repositoryName.text = searchResult.fullName
-        }
+        internal var text: TextView = itemView.findViewById(R.id.repositoryName)
     }
 }

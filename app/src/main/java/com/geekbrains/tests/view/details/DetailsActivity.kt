@@ -5,19 +5,21 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.geekbrains.tests.R
+import com.geekbrains.tests.databinding.ActivityDetailsBinding
 import com.geekbrains.tests.presenter.details.DetailsPresenter
 import com.geekbrains.tests.presenter.details.PresenterDetailsContract
-import kotlinx.android.synthetic.main.activity_details.*
 import java.util.*
 
 class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
 
+    private lateinit var binding: ActivityDetailsBinding
     private var detailsPresenter: PresenterDetailsContract = DetailsPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         detailsPresenter.onAttach(this)
-        setContentView(R.layout.activity_details)
+        binding = ActivityDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setUI()
     }
 
@@ -30,8 +32,8 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
         val count = intent.getIntExtra(TOTAL_COUNT_EXTRA, 0)
         detailsPresenter.setCount(count)
         setCountText(count)
-        decrementButton.setOnClickListener { detailsPresenter.onDecrement() }
-        incrementButton.setOnClickListener { detailsPresenter.onIncrement() }
+        binding.decrementButton.setOnClickListener { detailsPresenter.onDecrement() }
+        binding.incrementButton.setOnClickListener { detailsPresenter.onIncrement() }
     }
 
     override fun setCount(count: Int) {
@@ -39,7 +41,7 @@ class DetailsActivity : AppCompatActivity(), ViewDetailsContract {
     }
 
     private fun setCountText(count: Int) {
-        totalCountTextView.text =
+        binding.totalCountTextView.text =
             String.format(Locale.getDefault(), getString(R.string.results_count), count)
     }
 
