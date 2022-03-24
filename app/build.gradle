@@ -23,6 +23,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "repository"
+
+    productFlavors {
+        stubRepository {
+            applicationIdSuffix ".stubRepository"
+            versionNameSuffix "-stubRepository"
+            buildConfigField "String", "REPOSITORY", '"STUB"'
+            dimension 'repository'
+        }
+        realRepository {
+            applicationIdSuffix ".realRepository"
+            versionNameSuffix "-realRepository"
+            buildConfigField "String", "REPOSITORY", '"REAL"'
+            dimension 'repository'
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -36,20 +53,6 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
-        }
-    }
-
-    flavorDimensions "default"
-    productFlavors {
-        secondary {
-            applicationIdSuffix ".secondary"
-            versionNameSuffix "-secondary"
-            buildConfigField "String", "TYPE", '"SECONDARY"'
-        }
-        primary {
-            applicationIdSuffix ".primary"
-            versionNameSuffix "-primary"
-            buildConfigField "String", "TYPE", '"PRIMARY"'
         }
     }
 }
