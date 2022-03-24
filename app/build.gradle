@@ -23,19 +23,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     flavorDimensions "repository"
+
     productFlavors {
         stubRepository {
-            applicationId "com.geekbrains.stubRepository"
             applicationIdSuffix ".stubRepository"
             versionNameSuffix "-stubRepository"
             buildConfigField "String", "REPOSITORY", '"STUB"'
+            dimension 'repository'
         }
         realRepository {
-            applicationId "com.geekbrains.realRepository"
             applicationIdSuffix ".realRepository"
             versionNameSuffix "-realRepository"
             buildConfigField "String", "REPOSITORY", '"REAL"'
+            dimension 'repository'
         }
     }
     compileOptions {
