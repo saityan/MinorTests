@@ -22,18 +22,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug {
-            versionNameSuffix "-debug"
-        }
-        primary {
-            initWith debug
-            versionNameSuffix "-primary"
-        }
-        secondary {
-            initWith debug
-            versionNameSuffix "-secondary"
-        }
-
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
