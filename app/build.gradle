@@ -26,9 +26,15 @@ android {
     productFlavors {
         stubRepository {
             applicationId "com.geekbrains.stubRepository"
+            applicationIdSuffix ".stubRepository"
+            versionNameSuffix "-stubRepository"
+            buildConfigField "String", "REPOSITORY", '"STUB"'
         }
         realRepository {
             applicationId "com.geekbrains.realRepository"
+            applicationIdSuffix ".realRepository"
+            versionNameSuffix "-realRepository"
+            buildConfigField "String", "REPOSITORY", '"REAL"'
         }
     }
     compileOptions {
