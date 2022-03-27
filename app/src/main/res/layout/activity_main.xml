@@ -20,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/search_hint"
-        android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLines="1"
         android:singleLine="true"
@@ -29,16 +28,29 @@
 
     <Button
         android:id="@+id/toDetailsActivityButton"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
         android:text="@string/to_details"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_second"
+        app:layout_constraintTop_toBottomOf="@id/searchEditText" />
+
+    <Button
+        android:id="@+id/searchRepositoryButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/search_repository"
+        app:layout_constraintStart_toEndOf="@+id/guideline_second"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchEditText" />
 
     <TextView
         android:id="@+id/totalCountTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="@string/results_count"
         android:visibility="invisible"
@@ -54,4 +66,11 @@
         android:layout_marginTop="@dimen/margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/totalCountTextView" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
