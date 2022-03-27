@@ -52,26 +52,6 @@ class BehaviorTest {
     }
 
     @Test
-    fun test_OpenDetailsScreen() {
-        val toDetails: UiObject2 = uiDevice.findObject(
-            By.res(
-                packageName,
-                "toDetailsActivityButton"
-            )
-        )
-        toDetails.click()
-        val changedText =
-            uiDevice.wait(
-                Until.findObject(
-                    By.res(
-                        packageName,
-                        "totalCountTextView")),
-                TIMEOUT
-            )
-        Assert.assertEquals(changedText.text, "Number of results: 0")
-    }
-
-    @Test
     fun test_OpenDetailsScreenWithSearchResults() {
         val editText = uiDevice.findObject(By.res(packageName, "searchEditText"))
         editText.text = "saityan"
@@ -95,6 +75,26 @@ class BehaviorTest {
                 TIMEOUT
             ).text
         Assert.assertEquals(mainText, detailsText)
+    }
+
+    @Test
+    fun test_OpenDetailsScreen() {
+        val toDetails: UiObject2 = uiDevice.findObject(
+            By.res(
+                packageName,
+                "toDetailsActivityButton"
+            )
+        )
+        toDetails.click()
+        val changedText =
+            uiDevice.wait(
+                Until.findObject(
+                    By.res(
+                        packageName,
+                        "totalCountTextView")),
+                TIMEOUT
+            )
+        Assert.assertEquals(changedText.text, "Number of results: 0")
     }
 
     companion object {
