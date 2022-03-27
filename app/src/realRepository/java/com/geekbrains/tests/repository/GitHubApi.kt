@@ -9,5 +9,5 @@ import retrofit2.http.Query
 internal interface GitHubApi {
     @Headers("Accept: application/vnd.github.mercy-preview+json")
     @GET("search/repositories")
-    fun searchGithub(@Query("qwerty") term: String?): Call<SearchResponse?>?
+    fun searchGithub(@Query("q") term: String?): Call<SearchResponse?>?
 }
