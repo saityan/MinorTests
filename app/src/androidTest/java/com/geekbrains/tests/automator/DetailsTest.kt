@@ -45,7 +45,7 @@ class DetailsTest {
                 Until.findObject(
                     By.res(
                         packageName,
-                        "totalCountTextView")),
+                        "totalCountTextViewDetails")),
                 TIMEOUT
             ).text
         Assert.assertEquals(changedText, "Number of results: 0")
@@ -69,7 +69,7 @@ class DetailsTest {
         val decrementValue = uiDevice.wait(
             Until.findObject(
                 By.res(packageName,
-                    "totalCountTextView")),
+                    "totalCountTextViewDetails")),
             TIMEOUT).text
         Assert.assertEquals(decrementValue, "Number of results: -1")
     }
@@ -92,7 +92,7 @@ class DetailsTest {
         val incrementValue = uiDevice.wait(
             Until.findObject(
                 By.res(packageName,
-                    "totalCountTextView")),
+                    "totalCountTextViewDetails")),
             TIMEOUT).text
         Assert.assertEquals(incrementValue, "Number of results: 1")
     }

@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         searchResults: List<SearchResult>,
         totalCount: Int
     ) {
-        with(binding.totalCountTextViewDetails) {
+        with(binding.totalCountTextView) {
             visibility = View.VISIBLE
             text = String.format(
                 Locale.getDefault(),

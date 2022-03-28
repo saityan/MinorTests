@@ -48,7 +48,7 @@ class BehaviorTest {
                 Until.findObject(By.res(packageName, "totalCountTextView")),
                 TIMEOUT
             )
-        Assert.assertEquals(changedText.text.toString(), "Number of results: 2")
+        Assert.assertEquals(changedText.text, "Number of results: 2")
     }
 
     @Test
