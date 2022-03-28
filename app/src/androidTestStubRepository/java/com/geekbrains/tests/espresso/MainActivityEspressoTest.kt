@@ -38,7 +38,7 @@ class MainActivityEspressoTest {
     @Test
     fun activityTextView_NotNull() {
         scenario.onActivity {
-            val totalCountTextView = it.findViewById<TextView>(R.id.totalCountTextView)
+            val totalCountTextView = it.findViewById<TextView>(R.id.totalCountTextViewDetails)
             TestCase.assertNotNull(totalCountTextView)
         }
     }
@@ -77,7 +77,7 @@ class MainActivityEspressoTest {
         onView(withId(R.id.searchEditText)).perform(replaceText("test"), closeSoftKeyboard())
         onView(withId(R.id.searchEditText)).perform(pressImeActionButton())
         onView(isRoot()).perform(delay())
-        onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 14")))
+        onView(withId(R.id.totalCountTextViewDetails)).check(matches(withText("Number of results: 14")))
     }
 
     private fun delay(): ViewAction {

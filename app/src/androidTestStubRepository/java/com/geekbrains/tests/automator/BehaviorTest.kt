@@ -51,26 +51,6 @@ class BehaviorTest {
         Assert.assertEquals(changedText.text.toString(), "Number of results: 14")
     }
 
-    @Test
-    fun test_OpenDetailsScreen() {
-        val toDetails: UiObject2 = uiDevice.findObject(
-            By.res(
-                packageName,
-                "toDetailsActivityButton"
-            )
-        )
-        toDetails.click()
-        val changedText =
-            uiDevice.wait(
-                Until.findObject(
-                    By.res(
-                        packageName,
-                        "totalCountTextView")),
-                TIMEOUT
-            )
-        Assert.assertEquals(changedText.text, "Number of results: 0")
-    }
-
     companion object {
         private const val TIMEOUT = 5000L
     }
