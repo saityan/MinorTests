@@ -34,7 +34,7 @@ class MainActivityEspressoTest {
     @Test
     fun activityTextView_NotNull() {
         scenario.onActivity {
-            val totalCountTextView = it.findViewById<TextView>(R.id.totalCountTextViewDetails)
+            val totalCountTextView = it.findViewById<TextView>(R.id.totalCountTextView)
             TestCase.assertNotNull(totalCountTextView)
         }
     }
