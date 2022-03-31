@@ -10,6 +10,10 @@ import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_MINUS_1
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_PLUS_1
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_ZERO
+import com.geekbrains.tests.TIMEOUT
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -48,7 +52,7 @@ class DetailsTest {
                         "totalCountTextViewDetails")),
                 TIMEOUT
             ).text
-        Assert.assertEquals(changedText, "Number of results: 0")
+        Assert.assertEquals(changedText, TEST_NUMBER_OF_RESULTS_ZERO)
     }
 
     @Test
@@ -71,7 +75,7 @@ class DetailsTest {
                 By.res(packageName,
                     "totalCountTextViewDetails")),
             TIMEOUT).text
-        Assert.assertEquals(decrementValue, "Number of results: -1")
+        Assert.assertEquals(decrementValue, TEST_NUMBER_OF_RESULTS_MINUS_1)
     }
 
     @Test
@@ -94,10 +98,6 @@ class DetailsTest {
                 By.res(packageName,
                     "totalCountTextViewDetails")),
             TIMEOUT).text
-        Assert.assertEquals(incrementValue, "Number of results: 1")
-    }
-
-    companion object {
-        private const val TIMEOUT = 5000L
+        Assert.assertEquals(incrementValue, TEST_NUMBER_OF_RESULTS_PLUS_1)
     }
 }

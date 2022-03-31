@@ -12,6 +12,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.geekbrains.tests.R
+import com.geekbrains.tests.TEST_NUMBER_OF_RESULTS_14
 import com.geekbrains.tests.view.search.MainActivity
 import junit.framework.TestCase
 import org.hamcrest.Matcher
@@ -38,7 +39,7 @@ class MainActivityEspressoTest {
     @Test
     fun activityTextView_NotNull() {
         scenario.onActivity {
-            val totalCountTextView = it.findViewById<TextView>(R.id.totalCountTextViewDetails)
+            val totalCountTextView = it.findViewById<TextView>(R.id.totalCountTextView)
             TestCase.assertNotNull(totalCountTextView)
         }
     }
@@ -77,7 +78,7 @@ class MainActivityEspressoTest {
         onView(withId(R.id.searchEditText)).perform(replaceText("test"), closeSoftKeyboard())
         onView(withId(R.id.searchEditText)).perform(pressImeActionButton())
         onView(isRoot()).perform(delay())
-        onView(withId(R.id.totalCountTextViewDetails)).check(matches(withText("Number of results: 14")))
+        onView(withId(R.id.totalCountTextView)).check(matches(withText(TEST_NUMBER_OF_RESULTS_14)))
     }
 
     private fun delay(): ViewAction {
