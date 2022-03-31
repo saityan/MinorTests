@@ -7,6 +7,8 @@ import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiScrollable
 import androidx.test.uiautomator.UiSelector
+import com.geekbrains.tests.PACKAGE_NAME
+import com.geekbrains.tests.SETTINGS_NAME
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,12 +30,12 @@ class OpenOtherAppsTest {
             .getChildByText(
                 UiSelector()
                     .className(TextView::class.java.name),
-                "Settings"
+                SETTINGS_NAME
             )
         settingsApp.clickAndWaitForNewWindow()
 
         val settingsValidation =
-            uiDevice.findObject(UiSelector().packageName("com.android.settings"))
+            uiDevice.findObject(UiSelector().packageName(PACKAGE_NAME))
         Assert.assertTrue(settingsValidation.exists())
     }
 }
