@@ -12,7 +12,11 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         supportFragmentManager.beginTransaction()
-            .add(R.id.detailsFragmentContainer, DetailsFragment.newInstance(0))
+            .add(R.id.detailsFragmentContainer,
+                DetailsFragment.newInstance(
+                    intent.getIntExtra(TOTAL_COUNT_EXTRA,0)
+                )
+            )
             .commitAllowingStateLoss()
     }
 

@@ -9,11 +9,10 @@ import androidx.fragment.app.Fragment
 import com.geekbrains.tests.R
 import com.geekbrains.tests.databinding.FragmentDetailsBinding
 import com.geekbrains.tests.presenter.details.DetailsPresenter
-import com.geekbrains.tests.presenter.details.PresenterDetailsContract
 import java.util.*
 
 class DetailsFragment : Fragment(), ViewDetailsContract {
-    private var detailsPresenter: PresenterDetailsContract = DetailsPresenter()
+    private var detailsPresenter = DetailsPresenter()
     private var _binding: FragmentDetailsBinding? = null
     private val binding: FragmentDetailsBinding
         get() = _binding!!
