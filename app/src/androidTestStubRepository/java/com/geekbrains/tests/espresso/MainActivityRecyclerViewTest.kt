@@ -34,7 +34,7 @@ class MainActivityRecyclerViewTest {
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView))
             .perform(
                 RecyclerViewActions.scrollTo<SearchResultAdapter.SearchResultViewHolder>(
-                    ViewMatchers.hasDescendant(ViewMatchers.withText("FullName: 42"))
+                    ViewMatchers.hasDescendant(ViewMatchers.withText("Name: 42"))
                 )
             )
     }
@@ -57,14 +57,14 @@ class MainActivityRecyclerViewTest {
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView))
             .perform(
                 RecyclerViewActions.scrollTo<SearchResultAdapter.SearchResultViewHolder>(
-                    ViewMatchers.hasDescendant(ViewMatchers.withText("FullName: 50"))
+                    ViewMatchers.hasDescendant(ViewMatchers.withText("Name: 50"))
                 )
             )
 
         Espresso.onView(ViewMatchers.withId(R.id.recyclerView))
             .perform(
                 RecyclerViewActions.actionOnItem<SearchResultAdapter.SearchResultViewHolder>(
-                    ViewMatchers.hasDescendant(ViewMatchers.withText("FullName: 42")),
+                    ViewMatchers.hasDescendant(ViewMatchers.withText("Name: 42")),
                     ViewActions.click()
                 )
             )
@@ -86,9 +86,8 @@ class MainActivityRecyclerViewTest {
     private fun loadList() {
         Espresso.onView(ViewMatchers.withId(R.id.searchEditText)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.searchEditText))
-            .perform(ViewActions.replaceText("algol"), ViewActions.closeSoftKeyboard())
-        Espresso.onView(ViewMatchers.withId(R.id.searchEditText))
-            .perform(ViewActions.pressImeActionButton())
+            .perform(ViewActions.replaceText("saityan"), ViewActions.closeSoftKeyboard())
+        Espresso.onView(ViewMatchers.withId(R.id.searchRepositoryButton)).perform(ViewActions.click())
     }
 
     private fun tapOnItemWithId(id: Int) = object : ViewAction {
