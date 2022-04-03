@@ -17,7 +17,7 @@ import java.util.*
 class MainActivity : AppCompatActivity(), ViewSearchContract {
 
     private lateinit var binding: ActivityMainBinding
-    private val adapter = SearchResultAdapter()
+    private val adapter = SearchResultAdapter(listOf())
     private val presenter: PresenterSearchContract = SearchPresenter(createRepository())
     private var totalCount: Int? = null
 
