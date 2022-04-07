@@ -8,12 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.geekbrains.tests.R
 import com.geekbrains.tests.databinding.ActivityMainBinding
 import com.geekbrains.tests.model.SearchResult
-import com.geekbrains.tests.repository.GitHubApi
-import com.geekbrains.tests.repository.GitHubRepository
-import com.geekbrains.tests.repository.RepositoryContract
 import com.geekbrains.tests.view.details.DetailsActivity
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class MainActivity : AppCompatActivity(), ViewSearchContract {
@@ -27,6 +22,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        totalCount = 0
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUI()
@@ -122,12 +118,12 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         }
     }
 
-    override fun setCount(count: Int) {
-        this.totalCount = count
+    override fun setCountToNull() {
+        TODO("Not yet implemented")
     }
 
-    override fun setCountToNull() {
-        this.totalCount = null
+    override fun setCount(count: Int) {
+        this.totalCount = count
     }
 
     companion object {
