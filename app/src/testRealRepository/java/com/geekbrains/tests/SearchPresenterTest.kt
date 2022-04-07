@@ -31,13 +31,6 @@ class SearchPresenterTest {
     }
 
     @Test
-    fun searchGitHub_Test() {
-        val searchQuery = "some query"
-        presenter.searchGitHub("some query")
-        verify(repository, times(1)).searchGithub(searchQuery, presenter)
-    }
-
-    @Test
     fun handleGitHubError_Test() {
         presenter.handleGitHubError()
         verify(viewContract, times(1)).displayError()
