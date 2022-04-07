@@ -1,8 +1,15 @@
 package com.geekbrains.tests.repository
 
-internal interface RepositoryContract {
+import com.geekbrains.tests.model.SearchResponse
+import io.reactivex.Observable
+
+interface RepositoryContract {
     fun searchGithub(
         query: String,
         callback: RepositoryCallback
     )
+
+    fun searchGithub(
+        query: String
+    ): Observable<SearchResponse>
 }
