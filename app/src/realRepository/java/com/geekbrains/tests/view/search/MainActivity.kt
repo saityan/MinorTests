@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        totalCount = 0
+        this.totalCount = 0
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUI()
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
     }
 
     override fun setCountToNull() {
-        TODO("Not yet implemented")
+        this.totalCount = null
     }
 
     override fun setCount(count: Int) {
